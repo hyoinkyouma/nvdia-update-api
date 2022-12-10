@@ -1,0 +1,41 @@
+<div class="flex flex-col mx-auto items-center justify-center">
+    <h1 class="text-4xl">Driver Download</h1>
+    <hr class="w-full" />
+    <div class = "text-center flex flex-col" >
+    <div class="mx-auto">
+    <svg fill="#76b900" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 64 64" width="128px" height="128px"><path d="M 24 11 L 24 16.789062 L 25.119141 16.720703 C 39.409141 16.230703 48.740234 28.439453 48.740234 28.439453 C 48.740234 28.439453 38.040391 41.460938 26.900391 41.460938 C 25.930391 41.460938 24.94 41.370937 24 41.210938 L 24 38.269531 C 24.97 38.589531 26.020547 38.75 27.060547 38.75 C 34.870547 38.75 42.140625 28.650391 42.140625 28.650391 C 42.140625 28.650391 35.399141 19.470781 25.119141 19.800781 C 24.747089 19.800781 24.385703 19.829255 24.023438 19.839844 L 24.023438 16.789062 C 11.419438 17.808063 0.52929688 28.466797 0.52929688 28.466797 C 0.52929688 28.466797 6.693 46.306734 24 47.927734 L 24 44.689453 C 24.78 44.779453 25.620391 44.849609 26.400391 44.849609 C 36.790391 44.849609 44.300312 39.549062 51.570312 33.289062 C 52.780312 34.259062 57.710469 36.599141 58.730469 37.619141 C 51.820469 43.409141 35.719844 48.060547 26.589844 48.060547 C 25.709844 48.060547 24.84 48.019688 24 47.929688 L 24 53 L 63 53 L 63 11 L 24 11 z M 24 19.851562 L 24 23.599609 C 24.69 23.539609 25.389844 23.479766 26.089844 23.509766 C 32.659844 23.509766 36.580078 28.630859 36.580078 28.630859 L 31.230469 33.130859 C 28.840469 29.120859 28 27.349141 24 26.869141 L 24 38.267578 C 18.602 36.437578 16.818359 30.111328 16.818359 30.111328 C 16.818359 30.111328 19.968563 26.358703 23.976562 26.845703 L 24 26.845703 L 24 23.601562 C 16.354 24.435562 11.744141 29.533203 11.744141 29.533203 C 11.744141 29.533203 14.408 39.518422 24 41.232422 L 24 44.683594 C 11.304 43.108594 6.9707031 29.115234 6.9707031 29.115234 C 6.9707031 29.115234 12.64007 20.741523 24 19.851562 z"/></svg>
+    </div>
+    <h3 class="text-xl"><%= @driverInfo['IDS'][0]['downloadInfo']['Name'].gsub("%20", " ")%></h1>
+    <h3 class="text-l">Driver Version: <%= @driverInfo['IDS'][0]['downloadInfo']['Version']%></h3>
+    <h3 class="text-l">Download Size: <%= @driverInfo['IDS'][0]['downloadInfo']['DownloadURLFileSize']%></h3>
+    <div class="flex items-center justify-center">
+    <% @driverInfo['IDS'][0]['downloadInfo']['OSList'].each do |it| %> 
+       
+        <div class="ml-4 text-xs inline-flex items-center font-bold leading-sm uppercase px-3 py-1 rounded-full bg-gray-300 text-slate-900 border">
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="feather feather-hard-drive mr-2"
+            >
+            <line x1="22" y1="12" x2="2" y2="12"></line>
+            <path
+                d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"
+            ></path>
+            <line x1="6" y1="16" x2="6.01" y2="16"></line>
+            <line x1="10" y1="16" x2="10.01" y2="16"></line>
+        </svg>
+         <%=it['OSName'].gsub("%20", " ")%>
+        </div>
+    <%end%>
+    </div>
+    <%= link_to 'Download', @driverInfo['IDS'][0]['downloadInfo']['DownloadURL'], class: "my-5 focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800" %>
+    <%= link_to 'Driver Info', @driverInfo['IDS'][0]['downloadInfo']['DetailsURL'], class: "py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700" %>
+    </div>
+</div>

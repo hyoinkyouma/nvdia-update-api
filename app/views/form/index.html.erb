@@ -1,0 +1,39 @@
+<div class="w-screen flex flex-col items-center justify-center">
+    <%=form_with url: "/nvidia", method: :get do |f|%>
+    <h1 class="text-3xl text-center"> Find your driver: </h1>
+    <div class="flex flex-col gap-1 p-2">
+         <div class="flex flex-col w-full items-center justify-center">
+            <%= f.label :platform, "Platform"%>
+            <%= f.select(:platform, [["Desktop", "desktop"], ["Notebook", "notebook"]], {:selected => ["GeForce RTX 4080","GeForce RTX 4080"]}, {:class => "w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"}) %>
+        </div>
+
+        <div id = "desktop" class="flex flex-col w-full items-center justify-center">
+            <%= f.label :gpu, "GPU Model"%>
+            <%= f.select(:gpu, @gpu_desktop .map {|it| [it, it]}, {:selected => ["GeForce RTX 4080","GeForce RTX 4080"]}, {:class => "w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"}) %>
+        </div>
+
+         <div id = "mobile" class="flex flex-col w-full items-center justify-center hidden">
+            <%= f.label :gpu, "GPU Model"%>
+            <%= f.select(:gpu, @gpu_notebook.map {|it| [it, it]}, {:selected => ["GeForce RTX 3080 Ti Laptop GPU", "GeForce RTX 3080 Ti Laptop GPU"]}, {:class => "w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"}) %>
+        </div>
+
+        <div class="flex flex-col w-full items-center justify-center">
+            <%= f.label :os, "Operating System"%>
+            <%= f.select(:os, @os_list.map {|it| [it, it]}, {:selected => ["Windows 10 64-bit","Windows 10 64-bit"]}, {:class =>"w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"}) %>
+        </div> 
+
+        <div class="flex flex-col w-full items-center justify-center">
+            <label class="inline-flex relative items-center cursor-pointer">
+                <input type="checkbox" value="true" name="isDch" class="sr-only peer">
+                <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                <span class="ml-3 text-sm font-medium text-gray-200 dark:text-gray-200">DCH (UWP)</span>
+            </label>
+        </div> 
+
+        <%= f.submit "Find", {:class => "focus:outline-none text-white bg-green-800 hover:bg-green-900 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"}%>
+    </div>
+    <%end%>
+
+</div>
+
+
