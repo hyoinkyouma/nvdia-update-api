@@ -42,5 +42,4 @@ class NvidiaApi::Client
         res = Faraday.new(url: NVIDIA_API_SERVICE, params: params).get('AjaxDriverService.php?')
         JSON.parse(res.body)
     end
-
 end
